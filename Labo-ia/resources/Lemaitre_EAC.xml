@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <control>
+    <recordId>BE A4006 NA 000593</recordId>
+    <languageDeclaration>
+      <language languageCode="fre">français</language>
+    </languageDeclaration>
+    <conventionDeclaration>
+      <abbreviation>conventionDeclaration</abbreviation>
+      <citation>La notice d'autorité est conforme à la seconde édition de la "Norme internationale sur les notices d’autorité utilisées pour les Archives relatives aux collectivités, aux personnes ou aux familles" (ISAAR-CPF, 2011). La notice d'autorité a été encodée en XML EAC et respecte également les normes de catalogage suivantes : RDA-FR, AFNOR NF Z 44-060, AFNOR NF Z 44-061 et AFNOR NF Z 44-081.</citation>
+    </conventionDeclaration>
+    <localTypeDeclaration>
+      <abbreviation>detailLevel</abbreviation>
+      <citation>http://ica-atom.org/doc/RS-2#5.4</citation>
+    </localTypeDeclaration>
+    <localControl localType="detailLevel">
+      <term>Moyen</term>
+    </localControl>
+    <sources>
+      <source>
+        <sourceEntry>- L'Académie Pontificale des Sciences en mémoire de son second président Georges Lemaître. A l'occasion du cinquième anniversaire de sa mort, 1972, Pontificiae Academia Scientiarum Varia, 292p.
+- The Big-Bang and Georges Lemaître, 1984. (A. Berger, éd.), D. Reidel Publ. Company, Dordrecht, Holland, 420 p.
+- Cosmology of Lemaître, 1985 (O. Godart et M. Heller, eds), Pachart ed., Tucson, 204 p.
+- Georges Lemaître, le Père du Big Bang, 1994 (V. De Rath, éd.), Editions Labor, Bruxelles, ISBN 2-8040-1025-2, 156 p.
+- Georges Lemaître et l'Académie Royale de Belgique. Œuvres choisies et notice bibliographique. 1995 (Académie Royale de Belgique), 219 p.
+- Mgr. G. Lemaître savant et croyant. Actes du colloque commémoratif du centième anniversaire de sa naissance, Louvain-la-Neuve, le 4 novembre 1994, 1996 (J.-Fr. Stoffel), Reminescence 3, Centre Interfacultaire d'étude en histoire des sciences, univ. catholique de Louvain, 371 p.
+- Essais de cosmologie précédés de l'invention du Big Bang, 1997 (J.-P. Luminet et A. Grib, éds.), Editions du Seuil, 337 p.
+- Un Atome d'Univers. La vie et l'œuvre de Georges Lemaître. Le père du Big Bang. 2000 (Dominique Lambert), Ed. Racine, 372 pp.
+- L'invention du Big Bang, (Jean-Pierre Luminet), Seuil 2004, ISBN 2-02-061148-1, 267 p.
+- The Day Without Yesterday - Lemaître, Einstein, and the Birth of Modern Cosmology, (Farrell, John) - Thunder's Mouth Press 2005 - New York, ISBN 1-56025-660-5, 262 p.
+- The Day Without Yesterday - Lemaître, Einstein, and the Birth of Modern Cosmology, (Farrell, John) - Japanese translation by Nikkei Business Publications Inc 2006, ISBN 4-8222-8288-0, 285 pp.
+- L'itinéraire spirituel de Georges Lemaître. Suivi de " Univers et atome " (inédit de G. Lemaître). 2007 (Dominique Lambert), n°16, Editions Lessius, 222p.
+- Charles Darwin et Georges Lemaître, une improbable, mais passionnante rencontre. 2008 (Dominique Lambert et Jacques Reisse), Classe des Sciences, Académie royale de Belgique, ISBN 978-2-8031-0252-5, 288 p.</sourceEntry>
+      </source>
+    </sources>
+  </control>
+  <cpfDescription>
+    <identity>
+      <entityType>person</entityType>
+      <nameEntry>
+        <part>Lemaître, Georges</part>
+        <authorizedForm>conventionDeclaration</authorizedForm>
+      </nameEntry>
+      <nameEntryParallel>
+        <nameEntry xml:lang="fre" scriptCode="Latn">
+          <part>Lemaître, Georges Henri Joseph Edouard</part>
+          <preferredForm>conventionDeclaration</preferredForm>
+        </nameEntry>
+        <authorizedForm>conventionDeclaration</authorizedForm>
+      </nameEntryParallel>
+    </identity>
+    <description>
+      <existDates>
+        <date>1894-1966</date>
+      </existDates>
+      <biogHist id="md5-356679f1da5193f27bef29e43b92d823">
+        <p>Georges Lemaître, astronome, cosmologiste et professeur à l'Université catholique de Louvain, né à Charleroi le 17 juillet 1894, décédé à Louvain le 20 juin 1966.
+Après des humanités chez les jésuites, Georges Lemaître entre à dix-sept ans à l'école d'ingénieurs de l'Université catholique de Louvain. En 1914, il interrompt ses études et s'engage comme volontaire dans l'armée belge. Il est démobilisé en 1918. Il entreprend l'étude de la physique et des mathématiques et s'oriente vers l'état sacerdotal. Il obtient un doctorat en 1920 avec une thèse sur "L'approximation des fonctions de plusieurs variables réelles" sous la direction de Charles de la Vallée Poussin. En 1920, il entre au séminaire de Malines (Maison Saint-Rombaut, pour les vocations tardives) et est ordonné prêtre trois ans plus tard.
+En 1923, il obtient la bourse de voyage du Gouvernement belge ainsi qu'un fellowship du Committee for Relief in Belgium de la Belgian American Educational Foundation. Il se rend à l'Université de Cambridge (Angleterre) auprès d'Arthur Stanley Eddington qui l'initie à l'astronomie stellaire moderne et aux méthodes numériques. Il passe l'année suivante au Harvard College Observatory de Cambridge (USA) chez Harlow Shapley et au MIT, où il s'inscrit au doctorat en sciences.
+De retour en Belgique, il est nommé chargé de cours à l'Université catholique de Louvain en 1925. Il écrit un article qui paraît en 1927 dans les Annales de la Société scientifique de Bruxelles sous le titre "Un Univers homogène de masse constante et de rayon croissant rendant compte de la vitesse radiale des nébuleuses extragalactiques". Il y présente une toute nouvelle conception : l'expansion physique de l'Univers. Cette même année 1927, il présente au MIT sa thèse de doctorat sur "The gravitational field in a fluid sphere of uniform invariant density according to the theory of relativity". Il est alors reçu Doctor of Philosophy et nommé ensuite professeur ordinaire à l'Université catholique de Louvain.
+En 1931, son ancien maître Eddington publie une traduction anglaise de l'article de 1927 assorti d'un long commentaire. Lemaître est alors invité à Londres afin de participer à une réunion de la British Association sur la relation entre l'univers physique et la vie de l'esprit. C'est là qu'il propose l'hypothèse du début singulier de l'univers en expansion et lance l'idée de "l'Atome primitif". Cette proposition provoque une réaction très vive parmi la communauté scientifique de l'époque.
+Le 17 mars 1934, Georges Lemaître reçoit le Prix Francqui, la plus haute distinction scientifique belge. Ses parrains sont Albert Einstein et les académiciens Charles de la Vallée Poussin et A. de Hemptinne, tandis que les membres du jury international sont Arthur Eddington, Paul Langevin, Théophile de Donder et Marcel Dehalu. En 1936, il est élu membre de l'Académie pontificale des sciences. Il y prend une part active et en devient le président de mars 1960 à sa mort en 1966. En 1950, le Prix décennal des sciences appliquées du Gouvernement belge lui est décerné pour la période 1933-1942. Il est nommé également prélat en 1960.</p>
+      </biogHist>
+    </description>
+    <relations>
+      <cpfRelation cpfRelationType="hierarchical" xlink:href="https://archives.uclouvain.be/atom/index.php/universite-catholique-de-louvain" xlink:type="simple">
+        <relationEntry>Université catholique de Louvain</relationEntry>
+      </cpfRelation>
+      <cpfRelation cpfRelationType="hierarchical" xlink:href="https://archives.uclouvain.be/atom/index.php/faculte-des-sciences" xlink:type="simple">
+        <relationEntry>Faculté des sciences</relationEntry>
+      </cpfRelation>
+      <resourceRelation resourceRelationType="subjectOf" xlink:href="https://archives.uclouvain.be/atom/index.php/25e-anniversaire-de-la-promotion-des-ingenieurs-1939" xlink:type="simple">
+        <relationEntry>25e anniversaire de la Promotion des ingénieurs 1939</relationEntry>
+      </resourceRelation>
+      <resourceRelation resourceRelationType="subjectOf" xlink:href="https://archives.uclouvain.be/atom/index.php/dossier-la-theorie-des-spineurs-delie-cartan-et-georges-lemaitre" xlink:type="simple">
+        <relationEntry>Dossier "La Théorie des Spineurs" d'Elie Cartan et Georges Lemaître.</relationEntry>
+      </resourceRelation>
+      <resourceRelation resourceRelationType="subjectOf" xlink:href="https://archives.uclouvain.be/atom/index.php/dossier-concernant-lhommage-rendu-par-lucl-et-la-ville-de-charleroi-a-mgr-george-lemaitre" xlink:type="simple">
+        <relationEntry>Dossier concernant l’hommage rendu par l’UCL et la ville de Charleroi à Mgr. George Lemaïtre.</relationEntry>
+      </resourceRelation>
+      <resourceRelation resourceRelationType="creatorOf" xlink:href="https://archives.uclouvain.be/atom/index.php/archives-de-georges-lemaitre" xlink:type="simple">
+        <relationEntry>Archives de Georges Lemaître</relationEntry>
+      </resourceRelation>
+      <resourceRelation resourceRelationType="creatorOf" xlink:href="https://archives.uclouvain.be/atom/index.php/notes-de-mecanique-analytique" xlink:type="simple">
+        <relationEntry>Notes de mécanique analytique</relationEntry>
+      </resourceRelation>
+      <resourceRelation resourceRelationType="creatorOf" xlink:href="https://archives.uclouvain.be/atom/index.php/lemaitre-georges-3" xlink:type="simple">
+        <relationEntry>Lemaître, Georges</relationEntry>
+      </resourceRelation>
+    </relations>
+  </cpfDescription>
+</eac-cpf>
