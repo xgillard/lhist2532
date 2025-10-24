@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:color-table 
+	xmlns:office="http://openoffice.org/2000/office" 
+	xmlns:style="http://openoffice.org/2000/style" 
+	xmlns:text="http://openoffice.org/2000/text" 
+	xmlns:table="http://openoffice.org/2000/table" 
+	xmlns:draw="http://openoffice.org/2000/drawing" 
+	xmlns:fo="http://www.w3.org/1999/XSL/Format" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns:dc="http://purl.org/dc/elements/1.1/" 
+	xmlns:meta="http://openoffice.org/2000/meta" 
+	xmlns:number="http://openoffice.org/2000/datastyle" 
+	xmlns:svg="http://www.w3.org/2000/svg" 
+	xmlns:chart="http://openoffice.org/2000/chart" 
+	xmlns:dr3d="http://openoffice.org/2000/dr3d" 
+	xmlns:math="http://www.w3.org/1998/Math/MathML" 
+	xmlns:form="http://openoffice.org/2000/form" 
+	xmlns:script="http://openoffice.org/2000/script"
+>
+ 
+    <draw:color draw:name="XAV Blue Principal" draw:color="#3BA6D8"/>
+    <draw:color draw:name="XAV Gris Principal" draw:color="#838787"/>
+    <draw:color draw:name="XAV Rouge Alerte" draw:color="#E94E4B"/>
+    <draw:color draw:name="XAV Blanc" draw:color="#FFFFFF"/>
+
+    <draw:color draw:name="XAV Bleu 1" draw:color="#97D9F4"/>
+    <draw:color draw:name="XAV Bleu 2" draw:color="#3BA6D8"/>
+    <draw:color draw:name="XAV Bleu 3" draw:color="#2B8ABD"/>
+    <draw:color draw:name="XAV Bleu 4" draw:color="#1E6898"/>
+
+    <draw:color draw:name="XAV Bleu-Vert 1" draw:color="#87D2D6"/>
+    <draw:color draw:name="XAV Bleu-Vert 2" draw:color="#439799"/>
+    <draw:color draw:name="XAV Bleu-Vert 3" draw:color="#177882"/>
+    <draw:color draw:name="XAV Bleu-Vert 4" draw:color="#195358"/>
+
+    <draw:color draw:name="XAV Vert 1" draw:color="#D6E797"/>
+    <draw:color draw:name="XAV Vert 2" draw:color="#8BBF63"/>
+    <draw:color draw:name="XAV Vert 3" draw:color="#4E8848"/>
+    <draw:color draw:name="XAV Vert 4" draw:color="#336838"/>
+
+    <draw:color draw:name="XAV Jaune 1" draw:color="#FEE88F"/>
+    <draw:color draw:name="XAV Jaune 2" draw:color="#FCCA60"/>
+    <draw:color draw:name="XAV Jaune 3" draw:color="#FD9C42"/>
+    <draw:color draw:name="XAV Jaune 4" draw:color="#F66934"/>
+
+    <draw:color draw:name="XAV Rouge 1" draw:color="#EC4F4C"/>
+    <draw:color draw:name="XAV Rouge 2" draw:color="#FF2B38"/>
+    <draw:color draw:name="XAV Rouge 3" draw:color="#C21F32"/>
+    <draw:color draw:name="XAV Rouge 4" draw:color="#A81A2C"/>
+
+    <draw:color draw:name="XAV Rose 1" draw:color="#FC5A92"/>
+    <draw:color draw:name="XAV Rose 2" draw:color="#C22561"/>
+    <draw:color draw:name="XAV Rose 3" draw:color="#9E2375"/>
+    <draw:color draw:name="XAV Rose 4" draw:color="#762275"/>
+
+</office:color-table>

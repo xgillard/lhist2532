@@ -1,0 +1,216 @@
+\ProvidesPackage{beamerthemeXAV}
+
+% Uses OSX native fonts requires the use of xelatex to be compiled
+\usepackage{fontspec}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  FONTS  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newfontfamily\condensed{DIN Condensed}
+\newfontfamily\alternate{DIN Alternate}
+\newfontfamily\avenir{Avenir Next}
+
+\setmainfont{Avenir Next}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLORS 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{XAV@blue}{RGB}{ 59, 166, 216}
+\definecolor{XAV@grey}{RGB}{131, 135, 135}
+\definecolor{XAV@red}{RGB}{233, 78, 75}
+\definecolor{XAV@white}{RGB}{255, 255, 255}
+
+%% La palette de couleurs
+%%% BLEU
+\definecolor{XAV@bleu1}{RGB}{151, 217, 244}
+\definecolor{XAV@bleu2}{RGB}{ 59, 166, 216}
+\definecolor{XAV@bleu3}{RGB}{ 43, 138, 189}
+\definecolor{XAV@bleu4}{RGB}{ 30, 104, 152}
+
+%%% BLEU-VERT
+\definecolor{XAV@bleu_vert1}{RGB}{135, 210, 214}
+\definecolor{XAV@bleu_vert2}{RGB}{ 67, 150, 153}
+\definecolor{XAV@bleu_vert3}{RGB}{ 23, 120, 130}
+\definecolor{XAV@bleu_vert4}{RGB}{ 25,  83,  88}
+
+%%% VERT
+\definecolor{XAV@vert1}{RGB}{214, 231, 151}
+\definecolor{XAV@vert2}{RGB}{139, 189,  99}
+\definecolor{XAV@vert3}{RGB}{ 78, 136,  72}
+\definecolor{XAV@vert4}{RGB}{ 51, 104,  56}
+
+%%% JAUNE
+\definecolor{XAV@jaune1}{RGB}{254, 232, 143}
+\definecolor{XAV@jaune2}{RGB}{252, 202,  96}
+\definecolor{XAV@jaune3}{RGB}{253, 156,  66}
+\definecolor{XAV@jaune4}{RGB}{246, 105,  52}
+
+%%% ROUGE
+\definecolor{XAV@rouge1}{RGB}{236,  79,  76}
+\definecolor{XAV@rouge2}{RGB}{255,  43,  56}
+\definecolor{XAV@rouge3}{RGB}{194,  31,  50}
+\definecolor{XAV@rouge4}{RGB}{168,  26,  44}
+
+%%% ROSE
+\definecolor{XAV@rose1}{RGB}{252,  90, 146}
+\definecolor{XAV@rose2}{RGB}{194,  37,  97}
+\definecolor{XAV@rose3}{RGB}{158,  35, 117}
+\definecolor{XAV@rose4}{RGB}{118,  34, 117}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOMIZATION 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{navigation symbols}{}
+
+% NORMAL TEXT
+\setbeamerfont{normal text}{family=\avenir}
+\setbeamercolor{normal text}{fg=XAV@grey}
+
+% LISTS
+\setbeamercolor{enumerate item}{fg=XAV@blue}
+\setbeamerfont{enumerate item}{family=\avenir}
+\setbeamertemplate{itemize items}{\color{XAV@blue}$\blacktriangleright$}
+
+% ALERTED
+\setbeamercolor{alerted}{fg=XAV@red}
+
+% BLOCKS
+% mybe do something with {block title} and {block body}
+
+% BIBLIOGRAPHY
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+% TITLE PAGE
+\def\maketitle{\ifbeamer@inframe\titlepage\else\frame[plain]{\titlepage}\fi}
+\def\titlepage{\usebeamertemplate{title page}}
+
+\setbeamercolor{title page}{bg=black}
+
+\setbeamerfont{title in title page}{    family=\condensed, size=\fontsize{50pt}{0pt} }
+\setbeamerfont{subtitle in title page}{ family=\alternate, size=\fontsize{15pt}{0pt} }
+\setbeamerfont{author in title page}{   family=\avenir,    size=\fontsize{10pt}{0pt}}
+\setbeamertemplate{title page}{
+	\begin{beamercolorbox}[wd=\paperwidth, ht=\paperheight]{title page}
+		
+		\hspace*{20pt}
+		\begin{minipage}{\textwidth}
+			\color{XAV@grey} \usebeamerfont{subtitle in title page} \MakeUppercase{ \insertsubtitle }\par
+			\vspace*{.2cm}
+			\noindent\rule{\textwidth}{1pt}\\
+			\vspace*{.2cm}
+		\end{minipage}\par
+		\hspace*{20pt}
+		\begin{minipage}{\textwidth}
+			\color{XAV@blue} \usebeamerfont{title in title page} \MakeUppercase{ \inserttitle } \par
+		\end{minipage}\par
+		\vspace*{2cm}
+		\hspace*{20pt}
+		\begin{minipage}{\textwidth}
+			\centering
+			\color{XAV@white}
+			\usebeamerfont{author in title page}
+			\insertauthor
+		\end{minipage}\par
+		\vspace*{.5cm}
+	\end{beamercolorbox}
+}
+
+% SECTION PAGE
+\AtBeginSection[]{
+	%{ Colorier le background du slide
+	%\setbeamercolor{background canvas}{bg=XAV@vert1!20}
+	%
+	\begin{frame}[plain]
+		\vfill
+		\vfill
+		\begin{minipage}{\textwidth}
+			\color{XAV@grey} \usebeamerfont{subtitle in title page} \MakeUppercase{ \inserttitle }\par
+			\vspace*{.2cm}
+			\noindent\rule{\textwidth}{1pt}\\
+			\vspace*{.2cm}
+		\end{minipage}\par
+		\begin{minipage}{\textwidth}
+			\color{XAV@blue} \usebeamerfont{title in title page} \insertsectionhead\par
+		\end{minipage}
+	\end{frame}	
+	%
+	%} fin coloriage du background
+}
+
+% SUBSECTION
+\setbeamerfont{title in subsections page}{ family=\condensed, size=\fontsize{40pt}{0pt} }
+\AtBeginSubsection[]{
+	\begin{frame}[plain]
+		\vfill
+		\vfill
+		\begin{minipage}{\textwidth}
+			\color{XAV@grey} \usebeamerfont{subtitle in title page} \MakeUppercase{ \inserttitle } ~//~ \insertsectionhead\par
+			\vspace*{.2cm}
+			\noindent\rule{\textwidth}{1pt}\\
+			\vspace*{.2cm}
+		\end{minipage}\par
+		\begin{minipage}{\textwidth}
+			\color{XAV@rose1} \usebeamerfont{title in subsections page} \insertsubsectionhead\par
+		\end{minipage}
+	\end{frame}	
+}
+
+% SUBSUBSECTION
+\setbeamerfont{title in subsubsections page}{ family=\condensed, size=\fontsize{35pt}{0pt} }
+\AtBeginSubsubsection[]{
+	\begin{frame}[plain]
+		\vfill
+		\vfill
+		\begin{minipage}{\textwidth}
+			\color{XAV@grey} \usebeamerfont{subtitle in title page} \MakeUppercase{ \inserttitle } ~//~ \insertsectionhead ~/~ \insertsubsectionhead\par
+			\vspace*{.2cm}
+			\noindent\rule{\textwidth}{1pt}\\
+			\vspace*{.2cm}
+		\end{minipage}\par
+		\begin{minipage}{\textwidth}
+			\color{XAV@jaune3} \usebeamerfont{title in subsubsections page} \insertsubsubsectionhead\par
+		\end{minipage}
+	\end{frame}	
+}
+
+% HEADING
+\setbeamerfont{page number in head/foot}{family=\alternate}
+\setbeamercolor{page number in head/foot}{fg=XAV@grey}
+\setbeamerfont{headline}{family=\alternate, size=\fontsize{7}{0} }
+\setbeamertemplate{headline}{
+	\vskip 10pt
+	\begin{beamercolorbox}[wd=\textwidth,dp=1.5ex,leftskip=0.3cm,rightskip=0.3cm]{structure}%
+		\color{XAV@grey}
+		\MakeUppercase{\inserttitle} ~//~ \insertsectionhead \hfill \insertframenumber\par
+		\vspace*{5pt}
+		\hrulefill
+	\end{beamercolorbox}
+}
+
+% FRAME TITLE
+\setbeamerfont{frametitle}{family=\condensed, size=\fontsize{20}{0} }
+\setbeamercolor{frametitle}{fg=XAV@blue}
+
+\setbeamertemplate{frametitle} {
+	\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm]{frametitle}
+		\usebeamerfont{frametitle}\MakeUppercase{\insertframetitle}%
+	\end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMMANDS 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parametres interessants à passer: 
+% - currentsection
+% - currentsubsection
+% - hideallsubsections
+\def\outline#1{
+	\begin{frame}[plain]
+		\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm]{frametitle}
+			\usebeamerfont{frametitle}\MakeUppercase{Outline}%
+		\end{beamercolorbox}
+		\vfill
+		\tableofcontents[#1]
+		\vfill
+	\end{frame}
+}
+
