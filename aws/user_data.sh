@@ -13,6 +13,20 @@ git clone https://github.com/xgillard/lhist2532.git
 chown -R ubuntu:ubuntu lhist2532
 cd lhist2532
 
+cat <<EOF > .env
+# gemini 2.5
+export MODELS__A__NAME=gemini-2.5-flash-lite
+export MODELS__A__PROVIDER=google-genai
+
+# mistral large
+export MODELS__B__NAME=mistral-large
+export MODELS__B__PROVIDER=mistralai
+
+# openai
+export MODELS__C__NAME=gpt-oss-20b
+export MODELS__C__PROVIDER=openai
+EOF
+
 # 1st step: install uv
 su - ubuntu -c "curl -LsSf https://astral.sh/uv/install.sh | sh"
 su - ubuntu -c "
