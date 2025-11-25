@@ -108,6 +108,18 @@ def install_via_ssh(ip):
     if not connected:
         raise Exception("Impossible de se connecter en SSH.")
 
+    # 0. Création du Swap (CRUCIAL pour t3.micro)
+    print("🧠 Création du Swap (4Go)...")
+    swap_cmd = dedent("""
+        if [ ! -f /swapfile ]; then
+            sudo fallocate -l 4G /swapfile
+            sudo chmod 600 /swapfile
+            sudo mkswap /swapfile
+            sudo swapon /swapfile
+        fi
+    """).strip()
+    run_ssh_command(ssh, swap_cmd, "Activation Swap")
+
     print("🚀 Début de l'installation...")
 
     # 1. Mise à jour système et dépendances
