@@ -3,16 +3,20 @@
 # a t2. or t3 micro which is elligible to the free offering.
 
 # before anything
-apt-get update
-apt-get install -y python3-pip python3-venv git nginx
+echo "######## UPDATE AND INSTALL ###########################"
+sudo apt-get update
+sudo apt-get install -y python3-pip python3-venv git nginx
 
 cd /home/ubuntu
 
 # clone the repo
+echo "######## CLONE THE REPO ###############################"
 git clone https://github.com/xgillard/lhist2532.git
 chown -R ubuntu:ubuntu lhist2532
 cd lhist2532
 
+
+echo "######## CREATE .ENV ##################################"
 cat <<EOF > .env
 # gemini 2.5
 export MODELS__A__NAME=gemini-2.5-flash-lite
@@ -25,9 +29,11 @@ export MODELS__B__PROVIDER=mistralai
 # openai
 export MODELS__C__NAME=gpt-oss-20b
 export MODELS__C__PROVIDER=openai
+
 EOF
 
 # 1st step: install uv
+echo "######## INSTALL UV ##################################"
 su - ubuntu -c "curl -LsSf https://astral.sh/uv/install.sh | sh"
 su - ubuntu -c "
 	export PATH=\$HOME/.cargo/bin:\$PATH
@@ -40,6 +46,7 @@ cd ..
 
 # configuration du reverse proxy ngnix
 # On supprime la config par défaut pour éviter les conflits
+echo "######## EDIT CONFIG ##################################"
 rm -f /etc/nginx/conf.d/default.conf
 rm -f /etc/nginx/sites-enabled/default
 
@@ -79,8 +86,10 @@ WantedBy=multi-user.target
 EOF
 
 # Lancer le service
-systemctl daemon-reload
-systemctl enable streamlit
-systemctl start streamlit
-systemctl enable nginx
-systemctl restart nginx
+echo "######## RESTART SYSTEMD ##################################"
+sudo systemctl daemon-reload
+sudo systemctl enable streamlit
+sudo systemctl start streamlit
+sudo systemctl enable nginx
+sudo systemctl restart nginx
+

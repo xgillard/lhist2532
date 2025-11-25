@@ -10,11 +10,21 @@ class Settings(BaseSettings):
     """Settings of the deployment.
 
     Attributes:
-        aws_zone (str): the deployment zone for our EC2 instance
+        repo_url (str): url of the repository to clone
+        aws_key_name (str): name of the ssh key to use to connect to instance
+        aws_key_path (str): path to the local file containing the private key
+            required to establish an ssh connection to the instance
+
+        aws_region (str): the deployment zone for our EC2 instance
         aws_instance_type (str): the instance type (I chose a free one, pick
             whatever you want).
         aws_ami_id (str): defaults to Ubuntu. Pick the latest Ubuntu that is
             available and eligible for free tier.
+
+        aws_role_name (str): role that will be created for this instance
+        aws_profile (str):
+        aws_security_group_name (str):
+
         secret (dict[str, str]): the list of secrets that must be pushed
             to AWS using AWS secrets management.
     """
@@ -25,8 +35,10 @@ class Settings(BaseSettings):
         env_nested_delimiter="__",
     )
 
+    repo_url: str = "https://github.com/xgillard/lhist2532.git"
     aws_key_name: str = "labo-ia-archives-key"
-    aws_zone: str = "eu-west-3"
+    aws_key_path: str = "./labo-ia-archives-key.pem"
+    aws_region: str = "eu-west-3"
     aws_instance_type: str = "t3.micro"
     aws_ami_id: str = "ami-0ef9bcd5dfb57b968"  # Ubuntu
 
