@@ -248,6 +248,17 @@ def deploy():
         MinCount=1,
         MaxCount=1,
         SecurityGroupIds=[sg_id],
+        BlockDeviceMappings=[
+            {
+                "DeviceName": "/dev/sda1",  # Le nom standard pour Ubuntu
+                "Ebs": {
+                    "VolumeSize": 30,  # 30 Go (Maximum gratuit du Free Tier)
+                    "VolumeType": "gp3",  # Plus performant et moins cher que gp2
+                    "DeleteOnTermination": True,
+                },
+            },
+        ],
+        InstanceInitiatedShutdownBehavior="terminate",
     )
     instance_id = instances["Instances"][0]["InstanceId"]
 
