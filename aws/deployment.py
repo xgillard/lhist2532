@@ -13,6 +13,7 @@ from botocore.client import ClientError
 import paramiko
 
 from settings import Settings
+from textwrap import dedent
 
 SETTINGS = Settings()
 
@@ -125,35 +126,39 @@ def install_via_ssh(ip):
     env_content = "\n".join([f"{k}={v}" for k, v in SECRETS.items()])
     # On écrit le fichier directement
     sftp = ssh.open_sftp()
-    with sftp.file("/home/ubuntu/lhist2532/.env", "w") as f:
+    with sftp.file("/home/ubuntu/lhist2532/labo/.env", "w") as f:
         f.write(env_content)
     sftp.close()
     print("   ✅ Secrets injectés (.env)")
 
     # 4. Installation UV et Environnement Python
-    # Note: On ajoute le chemin de cargo au PATH pour la session courante
-    cmd_python = """
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    source $HOME/.cargo/env
-    cd lhist2532
-    uv venv
-    uv sync
-    """
-    run_ssh_command(ssh, cmd_python, "Installation Python & UV")
+    cmd_python = "curl -LsSf https://astral.sh/uv/install.sh | sh "
+    run_ssh_command(ssh, cmd_python, "Installation UV")
+
+    # 4bis. Sync de l'environnement.
+    cmd_python = dedent("""
+        export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH" \
+        && cd lhist2532/labo \
+        && uv venv \
+        && uv sync
+    """).strip()
+    run_ssh_command(ssh, cmd_python, "Pull dependencies")
 
     # 5. Configuration Nginx (Avec l'astuce 'sudo tee')
-    nginx_conf = """server {
-    listen 80;
-    server_name _;
-    location / {
-        proxy_pass http://127.0.0.1:8501;
-        proxy_http_version 1.1;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header Host \$host;
-        proxy_set_header Upgrade \$http_upgrade;
-        proxy_set_header Connection "upgrade";
-    }
-}"""
+    nginx_conf = dedent("""
+        server {
+            listen 80;
+            server_name _;
+            location / {
+                proxy_pass http://127.0.0.1:8501;
+                proxy_http_version 1.1;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $host;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+            }
+        }
+    """).strip()
     # On échappe les $ pour le shell python
     nginx_cmd = f"echo '{nginx_conf}' | sudo tee /etc/nginx/conf.d/streamlit.conf"
 
@@ -163,32 +168,33 @@ def install_via_ssh(ip):
     run_ssh_command(ssh, nginx_cmd, "Configuration Nginx")
 
     # 6. Configuration Systemd
-    service_conf = """[Unit]
-Description=Streamlit App
-After=network.target
+    service_conf = dedent("""
+        [Unit]
+        Description=Streamlit App
+        After=network.target
 
-[Service]
-User=ubuntu
-WorkingDirectory=/home/ubuntu/lhist2532
-EnvironmentFile=/home/ubuntu/lhist2532/.env
-ExecStart=/home/ubuntu/lhist2532/.venv/bin/streamlit run app.py
-Restart=always
+        [Service]
+        User=ubuntu
+        WorkingDirectory=/home/ubuntu/lhist2532/labo
+        EnvironmentFile=/home/ubuntu/lhist2532/labo/.env
+        ExecStart=/home/ubuntu/lhist2532/labo/.venv/bin/streamlit run app.py
+        Restart=always
 
-[Install]
-WantedBy=multi-user.target
-"""
+        [Install]
+        WantedBy=multi-user.target
+    """).strip()
     service_cmd = (
         f"echo '{service_conf}' | sudo tee /etc/systemd/system/streamlit.service"
     )
     run_ssh_command(ssh, service_cmd, "Création du service Systemd")
 
     # 7. Démarrage final
-    start_cmd = """
-    sudo systemctl daemon-reload
-    sudo systemctl enable streamlit
-    sudo systemctl restart streamlit
-    sudo systemctl restart nginx
-    """
+    start_cmd = dedent("""
+        sudo systemctl daemon-reload \
+        && sudo systemctl enable streamlit \
+        && sudo systemctl restart streamlit \
+        && sudo systemctl restart nginx
+    """).strip()
     run_ssh_command(ssh, start_cmd, "Démarrage des services")
 
     ssh.close()
@@ -218,6 +224,12 @@ def deploy():
                     "IpProtocol": "tcp",
                     "FromPort": 80,
                     "ToPort": 80,
+                    "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
+                },
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 8501,
+                    "ToPort": 8501,
                     "IpRanges": [{"CidrIp": "0.0.0.0/0"}],
                 },
             ],
