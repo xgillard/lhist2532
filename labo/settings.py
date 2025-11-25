@@ -53,7 +53,7 @@ class Settings(BaseSettings):
     """
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file="config.env",
         env_file_encoding="utf8",
         env_nested_delimiter="__",
         extra="allow",
