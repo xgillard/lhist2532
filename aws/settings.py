@@ -16,10 +16,8 @@ class Settings(BaseSettings):
             required to establish an ssh connection to the instance
 
         aws_region (str): the deployment zone for our EC2 instance
-        aws_instance_type (str): the instance type (I chose a free one, pick
-            whatever you want).
-        aws_ami_id (str): defaults to Ubuntu. Pick the latest Ubuntu that is
-            available and eligible for free tier.
+        aws_instance_type (str): the instance type.
+        aws_ami_id (str): defaults to Ubuntu.
 
         aws_role_name (str): role that will be created for this instance
         aws_profile (str):
@@ -39,7 +37,7 @@ class Settings(BaseSettings):
     aws_key_name: str = "labo-ia-archives-key"
     aws_key_path: str = "./labo-ia-archives-key.pem"
     aws_region: str = "eu-west-3"
-    aws_instance_type: str = "t3.micro"
+    aws_instance_type: str = "m5.xlarge"
     aws_ami_id: str = "ami-0ef9bcd5dfb57b968"  # Ubuntu
 
     aws_role_name: str = "labo-ia-archives-role"
