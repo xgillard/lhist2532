@@ -14,11 +14,20 @@ from langchain_core.messages import (
     TextContentBlock,
 )
 
+import streamlit as st
+
+
+@st.cache_resource
+def get_converter() -> DocumentConverter:
+    """Only meant to cache the converter"""
+
+    return DocumentConverter()
+
 
 def to_markdown(attach: UploadedFile) -> TextContentBlock:
     """Converts a PDF/Doc/Docx/Odt into a markdown transcription."""
 
-    converter = DocumentConverter()
+    converter = get_converter()
     stream = DocumentStream(name=attach.name, stream=attach)
     doc = converter.convert(stream).document
     text = doc.export_to_markdown()
