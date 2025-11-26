@@ -135,9 +135,9 @@ def install_via_ssh(ip):
 
     # 3. Injection du .env
     # On construit la string des variables
-    env_content = "\n".join([f"export {k}={v}" for k, v in SECRETS.items()])
+    env_content = "\n".join([f"export {k.upper()}={v}" for k, v in SECRETS.items()])
     print("# Résumé du dotenv")
-    print("\n".join([f"export {k}=***HIDDEN***" for k, _ in SECRETS.items()]))
+    print("\n".join([f"export {k.upper()}=***HIDDEN***" for k, _ in SECRETS.items()]))
     # On écrit le fichier directement
     sftp = ssh.open_sftp()
     with sftp.file("/home/ubuntu/lhist2532/labo/.env", "w") as f:
