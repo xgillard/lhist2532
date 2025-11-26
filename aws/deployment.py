@@ -125,7 +125,7 @@ def install_via_ssh(ip):
     # 1. Mise à jour système et dépendances
     run_ssh_command(
         ssh,
-        "sudo apt-get update && sudo apt-get install -y python3-pip python3-venv git nginx",
+        "sudo apt-get update && sudo apt-get install -y python3-pip python3-venv git nginx libgl1 libglib2.0-0",
         "Installation des paquets système",
     )
 
