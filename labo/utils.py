@@ -2,19 +2,49 @@
 messages.
 """
 
-from docling.document_converter import DocumentConverter
-from docling_core.types.io import DocumentStream
-import base64
-from pathlib import Path
-from streamlit.runtime.uploaded_file_manager import UploadedFile
+from typing import (
+    TypedDict,
+    Literal,
+    cast,
+)
+from docling.document_converter import (
+    DocumentConverter,
+)
+from docling_core.types.io import (
+    DocumentStream,
+)
+from pathlib import (
+    Path,
+)
+from streamlit.runtime.uploaded_file_manager import (
+    UploadedFile,
+)
 from langchain_core.messages import (
     ContentBlock,
     HumanMessage,
-    ImageContentBlock,
     TextContentBlock,
 )
 
+import base64
 import streamlit as st
+
+ImageUrl = Literal["image_url"]
+
+
+class ImageUrlContentBlock(TypedDict):
+    type: ImageUrl
+    image_url: str
+
+
+def as_image_url(mime: str, raw: bytes | memoryview) -> ImageUrlContentBlock:
+    encoded = base64.b64encode(raw).decode("utf8")
+    return ImageUrlContentBlock(
+        type="image_url",
+        image_url=f"data:{mime};base64,{encoded}",
+    )
+
+
+AnyContentBlock = ContentBlock | ImageUrlContentBlock
 
 
 @st.cache_resource
@@ -32,11 +62,12 @@ def to_markdown(attach: UploadedFile) -> TextContentBlock:
     doc = converter.convert(stream).document
     text = doc.export_to_markdown()
     return TextContentBlock(
-        type="text", text=text, extras={"file": attach.name}
+        type="text",
+        text=text,
     )
 
 
-def as_content_block(attach: UploadedFile) -> ContentBlock:
+def as_content_block(attach: UploadedFile) -> AnyContentBlock:
     """turns a file into a content block."""
 
     name = Path(attach.name)
@@ -44,21 +75,9 @@ def as_content_block(attach: UploadedFile) -> ContentBlock:
         case ".pdf" | ".doc" | ".docx" | ".odt":
             return to_markdown(attach)
         case ".jpg" | ".jpeg":
-            mime = "image/jpeg"
-            encoded = base64.b64encode(attach.getbuffer())
-            return ImageContentBlock(
-                type="image",
-                mime_type=mime,
-                base64=encoded.decode(encoding="utf8"),
-            )
+            return as_image_url("image/jpeg", attach.getbuffer())
         case ".png":
-            mime = "image/png"
-            encoded = base64.b64encode(attach.getbuffer())
-            return ImageContentBlock(
-                type="image",
-                mime_type=mime,
-                base64=encoded.decode(encoding="utf8"),
-            )
+            return as_image_url("image/png", attach.getbuffer())
         case _:
             raise ValueError("unknown image type")
 
@@ -68,7 +87,7 @@ def as_human_message(text: str, files: list[UploadedFile]) -> HumanMessage:
 
     return HumanMessage(
         content_blocks=[
-            *(as_content_block(a) for a in files),
+            *(cast(ContentBlock, as_content_block(a)) for a in files),
             TextContentBlock(type="text", text=text),
         ]
     )

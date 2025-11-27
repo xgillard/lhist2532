@@ -22,6 +22,16 @@ def clear_messages():
     st.session_state["messages"] = []
 
 
+@st.fragment
+def model_select(settings):
+    model_key = st.selectbox(
+        label="Model",
+        options=settings.models.keys(),
+    )
+    model = settings.models[model_key]
+    st.session_state["model"] = model.model
+
+
 def page_header(settings: Settings):
     """Draw the page title as well as the model select box.
 
@@ -36,12 +46,7 @@ def page_header(settings: Settings):
             st.title("AI & Archives Lab")
 
         with mid:
-            model_key = st.selectbox(
-                label="Model",
-                options=settings.models.keys(),
-            )
-            model = settings.models[model_key]
-            st.session_state["model"] = model.model
+            model_select(settings)
 
         with right:
             st.button(
@@ -62,12 +67,12 @@ def display_message(msg: BaseMessage):
         for block in msg.content_blocks:
             match block["type"]:
                 case "text":
-                    if fname := block.get("extras", {}).get("file"):
-                        st.write(f" -- {fname} --")
-                    else:
-                        st.write(block["text"])
+                    st.write(block["text"])
                 case "image":
-                    st.write(" -- image --")
+                    mime_type = block.get("mime_type")
+                    b64 = block.get("base64")
+                    url = f"data:image/{mime_type};base64,{b64}"
+                    st.image(url)
 
 
 def render_session(parent):
@@ -92,14 +97,23 @@ def ui(cfg: Settings):
         file_type=[".jpg", ".jpeg", ".png", ".pdf", ".doc", ".docx", ".odt"],
     ):
         hist = st.session_state.get("messages", [])
-        msg = as_human_message(prompt.text, prompt.files)
-        hist.append(msg)
-        display_message(msg)
+        with st.status(label="Processing your files", expanded=True) as status:
+            msg = as_human_message(prompt.text, prompt.files)
+            hist.append(msg)
+            display_message(msg)
 
-        model = st.session_state["model"]
-        rsp = model.invoke([*hist, msg])
-        hist.append(rsp)
-        display_message(rsp)
+            status.update(state="complete")
+
+        with st.status(
+            label="Thinking about your request", expanded=True
+        ) as status:
+            model = st.session_state["model"]
+            rsp = model.invoke([*hist, msg])
+            hist.append(rsp)
+            display_message(rsp)
+
+            status.update(state="complete")
+
         st.session_state["messages"] = hist
 
 
