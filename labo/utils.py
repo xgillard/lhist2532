@@ -72,6 +72,11 @@ def as_content_block(attach: UploadedFile) -> AnyContentBlock:
 
     name = Path(attach.name)
     match name.suffix.lower():
+        case ".txt" | ".xml" | ".md" | ".ead" | ".eac":
+            return TextContentBlock(
+                type="text",
+                text=attach.read().decode("utf8"),
+            )
         case ".pdf" | ".doc" | ".docx" | ".odt":
             return to_markdown(attach)
         case ".jpg" | ".jpeg":

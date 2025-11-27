@@ -94,7 +94,20 @@ def ui(cfg: Settings):
 
     if prompt := st.chat_input(
         accept_file=True,
-        file_type=[".jpg", ".jpeg", ".png", ".pdf", ".doc", ".docx", ".odt"],
+        file_type=[
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".txt",
+            ".md",
+            ".xml",
+            ".ead",
+            ".eac",
+            ".pdf",
+            ".doc",
+            ".docx",
+            ".odt",
+        ],
     ):
         hist = st.session_state.get("messages", [])
         with st.status(label="Processing your files", expanded=True) as status:
