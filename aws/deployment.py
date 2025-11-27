@@ -11,7 +11,6 @@ import boto3
 import time
 from botocore.client import ClientError
 import paramiko
-import requests
 
 from settings import Settings
 from textwrap import dedent
@@ -150,12 +149,13 @@ def install_via_ssh(ip):
     cmd_python = "curl -LsSf https://astral.sh/uv/install.sh | sh "
     run_ssh_command(ssh, cmd_python, "Installation UV")
 
-    # 4bis. Sync de l'environnement.
+    # 4bis. Sync de l'environnement et disk preload de docling
     cmd_python = dedent("""
         export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH" \
         && cd lhist2532/labo \
         && uv venv \
         && uv sync
+        && uv run python -c "from docling.document_converter import DocumentConverter; print('Download start...'); DocumentConverter(); print('Download complete!')"
     """).strip()
     run_ssh_command(ssh, cmd_python, "Pull dependencies")
 
@@ -289,8 +289,6 @@ def deploy():
     # 3. On lance l'installation via SSH
     try:
         install_via_ssh(public_ip)
-        # preload
-        _ = requests.get(f"http://{public_ip}")
         print(f"\n🎉 TERMINÉ ! Application visible sur : http://{public_ip}")
     except Exception as e:
         print(f"\n❌ ECHEC de l'installation : {e}")
