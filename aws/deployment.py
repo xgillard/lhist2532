@@ -11,6 +11,7 @@ import boto3
 import time
 from botocore.client import ClientError
 import paramiko
+import requests
 
 from settings import Settings
 from textwrap import dedent
@@ -288,6 +289,8 @@ def deploy():
     # 3. On lance l'installation via SSH
     try:
         install_via_ssh(public_ip)
+        # preload
+        _ = requests.get(f"http://{public_ip}")
         print(f"\n🎉 TERMINÉ ! Application visible sur : http://{public_ip}")
     except Exception as e:
         print(f"\n❌ ECHEC de l'installation : {e}")
