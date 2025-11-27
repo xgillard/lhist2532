@@ -154,7 +154,7 @@ def install_via_ssh(ip):
         export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH" \
         && cd lhist2532/labo \
         && uv venv \
-        && uv sync
+        && uv sync \
         && uv run python -c "from docling.document_converter import DocumentConverter; print('Download start...'); DocumentConverter(); print('Download complete!')"
     """).strip()
     run_ssh_command(ssh, cmd_python, "Pull dependencies")
