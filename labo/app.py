@@ -9,9 +9,13 @@ from dotenv import load_dotenv
 from settings import Settings
 from utils import (
     as_human_message,
+    get_converter,
 )
 
 load_dotenv()
+
+# preload once for all: 1st will pay the price but likely wont notice
+_ = get_converter()
 
 
 def clear_messages():
