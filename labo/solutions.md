@@ -66,6 +66,33 @@ python3 conversion.py c:/mon_dossier/a.eac.xml
 ```
 
 ## EXO 6
+```
+# Contexte
+Je suis archiviste et je dois traiter un gros volume de vrac numérique. Comme première étape, je voudrais pouvoir lister l'ensemble des
+fichiers qui m'ont été fourni et calculer l'emprunte (hash, sha256) de chacun de ces fichiers. 
+
+# Instruction
+Ecris moi un programme python qui me permette de lister tous les fichiers repris dans l'arborescence. Pour chacun de ces fichiers, je
+veux que ton programme calcule le sha256. Je veux enfin que tous les résultats (liste des fichiers avec leur sha256) soit stocké dans un
+nouveau fichier CSV que tu vas créer et qui s'appellera "log.csv"
+
+# Exemple d'utilisation
+python3 ton_programme.py c:/mon_dossier
+
+
+Ton programme doit lister tous les fichiers et calculer leur sha256. Il doit ensuite produire un fichier csv nommé 'log.csv' et dont le
+contenu ressemblea a ceci: 
+
+```
+"path","sha256"
+"c:/mon_dossier/fichier_1.jpg","07a0ef36ba94e6487380db1627426b278573292289d7661035d64c284af52e42"
+"c:/mon_dossier/fichier_2.jpg","07a0ef36ba94e6487380db1627426b278573292289d7661035d64c284af52e42"
+"c:/mon_dossier/fichier_3.jpg","07a0ef36ba94e6487380db1627426b278573292289d7661035d64c284af52e42"
+```
+
+```
+
+## EXO 7
 
 ```
 # Contexte
